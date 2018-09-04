@@ -1,0 +1,195 @@
+	# Ch.9  다차원 배열
+
+- 문자열을 활용하기 위한 문자열 처리함수(저번 복습 내용)
+- 다차원 배열의 구조
+- 문자열 배열의 구조
+
+## Ch.9-1
+
+### 다차원 배열이란?
+
+- 배열의 요소 자체가 또 다른 배열이 되는 경우를 다차원 배열이라 한다.
+- 2차원 이상의 배열을 다차원 배열이라고 한다.
+
+### 2차원 정수형 배열
+
+- 다차원 배열 중에서 가장 일반적인 형태는 2차원 배열이다.
+- 2차원 배열은 (행의크기)(열의 크기) 로 표현된다.
+- 즉 행(Raw)과 열(Column)로 구성되는 행렬(Matrix) 이다.
+
+
+
+```c 
+int count[2][3]; //행 , 열 
+```
+
+
+
+
+
+## Ch.9-1 다차원 배열 응용문제 실습 - 1
+
+- 1차원 배열을 사용하여 랜덤으로 수를 받아 배열에 저장하고 출력하는 프로그램을 작성하시오.
+
+```c 
+//2018.09.04 Fri
+//201811458 정 종 현
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+
+	int a[10];
+	int i;
+	long seed;
+
+	seed = time(NULL);
+	srand(seed);
+	for (i = 0; i < 10; i++)
+		a[i] = rand() % 101;
+
+	printf("The numbers of array a[] \n");
+	for (i = 0; i < 10; i++) {
+		printf("a[%d] = %d\n", i, a[i]);
+		return 0;
+	}
+
+}
+```
+
+## Ch.9-1 다차원 배열 응용문제 실습 - 2
+
+- 위 문제를 2차원 배열을 사용하여 작성하시오.
+
+```c 
+//2018.09.04 Fri
+//201811458 정 종 현
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+
+	int a[3][10];
+	int i,j;
+	long seed;
+
+	seed = time(NULL);
+	srand(seed);
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 10; j++)
+		a[i][j] = rand() % 101;
+
+	printf("The numbers of array a[] \n");
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 10; j++)
+		printf("a[%d][%d] = %d\n", i, j , a[i][j]);
+		return 0;
+
+}
+```
+
+## Ch.9-1 다차원 배열 응용문제 실습 - 3
+
+-  2차원 배열에 구구단을 저장하고 원하는 수를 입력받아 출력하는 프로그램을 작성하시오.
+
+```c 
+//2018.09.04 Fri
+//201811458 정 종 현
+
+#include <stdio.h>
+
+
+int main() {
+
+	int gugu[10][10];
+	int i, j, x, y;
+
+
+	for (i = 1; i < 10; i++) {
+
+		for (j = 1; j < 10; j++) {
+			gugu[i][j] = i * j;
+			printf("%d x %d = %d\n", i , j , gugu[i][j]);
+		}
+
+	}
+
+	printf("x,y 입력 >> ");
+	scanf("%d %d", &x, &y);
+	printf("%d x %d = %d", x, y, gugu[x][y]);
+
+	return 0;
+
+}
+```
+
+## Ch.9-1 문자열 비교 함수 응용문제 실습 - 1
+
+- 배열과 문자열 비교 함수를 사용하여 사전 순에 가장 앞에 있는 이름을 출력하는 프로그램을 작성하시오.
+
+```c 
+//2018.09.04 Fri
+//201811458 정 종 현
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	char name[5][20];
+	int i , min = 0;
+
+	for (i = 0; i < 5; i++) {
+		printf("이름을 입력하세요 >>");
+		scanf("%s", name[i]);
+
+	}
+	for (i = 0; i < 5; i++) {
+		if (strcmp(name[min], name[i]) > 0)
+			min = i;
+	}
+	printf("사전 순으로 가장 앞에 있는 이름은 %s 입니다.\n",name[min]);
+
+	return 0;
+}
+```
+
+## Ch.9-1 홀 짝 맞추기 응용문제 실습 - 5
+
+- 홀인지 짝인지 맞추는 프로그램을 작성하세요.
+
+```c 
+//2018.09.04 Fri
+//201811458 정 종 현
+
+
+#include <stdlib.h>
+#include <time.h>
+
+
+int main() {
+	int num, num1;
+	long seed, count = 1;
+
+	seed = time(NULL);
+	srand(seed);
+	while (1)
+	{
+		num = rand() % 2;
+		printf("홀인지 짝인지 맞추세요 (홀 : 1, 짝 : 0) >> ");
+		scanf("%d", &num1);
+		if (num == num1)
+			break;
+		else
+			count++;
+
+	}
+	printf("%d 번 만에 맞추셨습니다. \n", count);
+
+}
+```
+
